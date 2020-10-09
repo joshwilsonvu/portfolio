@@ -1,22 +1,24 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import App from '../components/App';
-import { headData } from '../mock/data';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../style/main.scss';
+import React, { useEffect } from "react";
+import { Head, Hero, About, Projects, Contact, Divider } from "../components";
+//import "bootstrap/dist/css/bootstrap.min.css";
+import "../style/index.js";
 
-export default () => {
-  const { title, lang, description } = headData;
-
+export default function Home() {
+  useEffect(() => {
+    console.log(
+      `%cCurious, aren't you? Here's your surprise: https://bit.ly/3nyi8Ru`,
+      `display: inline-block; border: 2px solid red; border-radius: 4px; padding: 4px;`
+    );
+  }, []);
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{title || 'Gatsby Simplefolio'}</title>
-        <html lang={lang || 'en'} />
-        <meta name="description" content={description || 'Gatsby Simplefolio'} />
-      </Helmet>
-      <App />
+      <Head />
+      <Hero />
+      <About />
+      <Divider />
+      <Projects />
+      <Divider invert />
+      <Contact />
     </>
   );
-};
+}
