@@ -39,7 +39,7 @@ const themes = [
       primary: "#d8d0a0",
       secondary: "#c0c098",
       white: "#184850",
-      black: "white",
+      black: "#fffff0",
     },
   },
   {

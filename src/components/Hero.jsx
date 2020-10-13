@@ -38,8 +38,8 @@ const Hero = () => {
           ])}
         >
           <ClassNames>
-            {({ css }) => {
-              const gradientClass = css(gradient);
+            {({ css: vanillaCss }) => {
+              const gradientClass = vanillaCss(gradient);
               return (
                 <TypeIt
                   reducedMotion={reducedMotion}
@@ -50,27 +50,31 @@ const Hero = () => {
                     deleteSpeed: 50,
                     afterComplete: async () => setFinished(true),
                   }}
-                  getBeforeInit={(instance) =>
-                    typeItInit(instance, isDesktop, gradientClass)
-                  }
+                  getBeforeInit={(instance) => {
+                    setFinished(false);
+                    return typeItInit(instance, isDesktop, gradientClass);
+                  }}
                 />
               );
             }}
           </ClassNames>
         </div>
         <div aria-hidden="true" css={css([bottom, flex1])}>
-          <Fade visible={finished} dir="top" css={css([black, szBig, padBig])}>
-            <FaArrowAltCircleDown
-              css={css`
-                cursor: pointer;
-              `}
-              onClick={() => {
-                document.getElementById("about")?.scrollIntoView({
-                  smooth: true,
-                  block: isDesktop ? "center" : "start",
-                });
-              }}
-            />
+          <Fade visible={finished} dir="top">
+            <div css={css([black, szBig, padBig])}>
+              <FaArrowAltCircleDown
+                title="See more"
+                css={css`
+                  cursor: pointer;
+                `}
+                onClick={() => {
+                  document.getElementById("about")?.scrollIntoView({
+                    smooth: true,
+                    block: isDesktop ? "center" : "start",
+                  });
+                }}
+              />
+            </div>
           </Fade>
         </div>
       </section>

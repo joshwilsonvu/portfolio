@@ -41,22 +41,6 @@ export function Title({ children, className }) {
   );
 }
 
-const clsInvisible = css`
-  @media not screen and (prefers-reduced-motion: reduce) {
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.7s ease-out;
-    will-change: opacity, visibility;
-  }
-`;
-const clsVisible = css`
-  @media not screen and (prefers-reduced-motion: reduce) {
-    opacity: 1;
-    transform: none;
-    visibility: visible;
-  }
-`;
-
 export function AutoFade(props) {
   const isClient = typeof window !== "undefined";
   const [visible, setVisible] = useState(false);
@@ -91,20 +75,33 @@ export function AutoFade(props) {
 }
 
 export const Fade = React.forwardRef(function Fade(
-  { visible, dir, className, css: cssProp, children },
+  { visible, dir, className, children },
   ref
 ) {
+  console.log({ className });
   const reduceMotion = useReduceMotion();
   return (
     <div
       ref={ref}
-      css={css([
-        cssProp,
-        !reduceMotion && dirs[dir],
-        clsInvisible,
-        visible && clsVisible,
-      ])}
       className={className}
+      css={css([
+        className,
+        !reduceMotion && dirs[dir],
+        css`
+          @media not screen and (prefers-reduced-motion: reduce) {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.7s ease-out;
+            will-change: opacity, visibility;
+            ${visible
+              ? `
+              opacity: 1;
+              transform: none;
+              visibility: visible;`
+              : ""}
+          }
+        `,
+      ])}
     >
       {children}
     </div>
