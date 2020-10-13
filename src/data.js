@@ -26,7 +26,7 @@ export const projects = [
   {
     id: 1,
     img: "project.jpg",
-    title: "Placeholder A",
+    title: "MagicMirror",
     paragraphs: ["I built an entire city skyline.", "Cost me $5."],
     url: "https://example.com",
     repo: "https://github.com/joshwilsonvu/example",

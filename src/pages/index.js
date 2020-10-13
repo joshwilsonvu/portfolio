@@ -6,8 +6,8 @@ import "../style/index.js";
 export default function Home() {
   useEffect(() => {
     console.log(
-      `%cCurious, aren't you? Here's your surprise: https://bit.ly/3nyi8Ru`,
-      `display: inline-block; border: 2px solid red; border-radius: 4px; padding: 4px;`
+      `%cLooking for an Easter egg? https://bit.ly/3nyi8Ru`,
+      `display: inline-block; border: 2px solid green; border-radius: 4px; padding: 4px;`
     );
   }, []);
   return (

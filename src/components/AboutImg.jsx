@@ -1,8 +1,9 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
-import { cx, css } from "emotion";
-import { hoverRotate } from "../style";
+import { css, jsx } from "@emotion/core";
+/* @jsx jsx */
+import { hoverGrow } from "../style";
 import Img from "gatsby-image";
 
 const AboutImg = ({ alt }) => {
@@ -23,12 +24,13 @@ const AboutImg = ({ alt }) => {
 
   return (
     <Img
-      className={cx(
+      css={css([
         css`
           align-self: center;
+          filter: drop-shadow(0 0 1rem var(--white-color));
         `,
-        hoverRotate
-      )}
+        hoverGrow,
+      ])}
       alt={alt}
       fixed={imageFixed}
     />

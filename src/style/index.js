@@ -1,6 +1,5 @@
-import { css, injectGlobal } from "emotion";
-import "./reset";
-import "./typography";
+import { css } from "@emotion/core";
+import "./base.css";
 export * from "./colors";
 export * from "./sizes";
 
@@ -126,10 +125,6 @@ export const button = css`
   z-index: 1;
   flex: 0;
   transition: all 0.5s;
-
-  ${"" /* &:hover {
-    text-decoration: none;
-  } */}
 `;
 export const buttonWhite = css`
   color: var(--white-color);
@@ -150,12 +145,12 @@ export const buttonBlack = css`
   }
 `;
 
-export const hoverRotate = css`
+export const hoverGrow = css`
   will-change: transform;
   transition: transform 0.5s;
   &:hover {
     @media not screen and (prefers-reduced-motion: reduce) {
-      transform: rotate(-5deg) scale(1.05);
+      transform: scale(1.05);
     }
   }
 `;

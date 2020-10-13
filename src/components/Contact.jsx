@@ -16,15 +16,16 @@ import {
   button,
   buttonWhite,
 } from "../style";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
+/* @jsx jsx */
 const { cta } = contact;
 const { email, twitter, github, linkedin } = footer;
 
 const Contact = () => (
-  <section id="contact" className={cx(bgGradient, section)}>
+  <section id="contact" css={css([bgGradient, section])}>
     <div>
-      <Title className={cx(szBig, white)}>{cta}</Title>
-      <ul className={cx(listUnstyled, row, alignCenter)}>
+      <Title css={css([szBig, white])}>{cta}</Title>
+      <ul css={css([listUnstyled, row, alignCenter])}>
         {email && <SocialLink info={email} name="email" icon={FaEnvelope} />}
         {twitter && (
           <SocialLink info={twitter} name="twitter" icon={FaTwitter} />
@@ -51,17 +52,17 @@ function SocialLink({ info, name, icon }) {
         aria-label={name}
       >
         <li
-          className={cx(
+          css={css([
             column,
             padSmall,
             css`
               white-space: nowrap;
             `,
             button,
-            buttonWhite
-          )}
+            buttonWhite,
+          ])}
         >
-          {<Icon className={szMid} />}
+          {<Icon css={szMid} />}
           <span> {info.handle || null}</span>
         </li>
       </a>

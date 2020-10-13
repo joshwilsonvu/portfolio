@@ -2,7 +2,9 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
 import Img from "gatsby-image";
-import { hoverRotate } from "../style";
+import { hoverGrow } from "../style";
+import { jsx } from "@emotion/core";
+/* @jsx jsx */
 
 const ProjectImg = ({ filename, alt }) => {
   const data = useStaticQuery(graphql`
@@ -29,7 +31,7 @@ const ProjectImg = ({ filename, alt }) => {
   if (!image) return null;
 
   const imageFixed = image.node.childImageSharp.fixed;
-  return <Img alt={alt} className={hoverRotate} fixed={imageFixed} />;
+  return <Img alt={alt} css={hoverGrow} fixed={imageFixed} />;
 };
 
 ProjectImg.propTypes = {

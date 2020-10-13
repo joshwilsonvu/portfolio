@@ -1,7 +1,5 @@
-import { injectGlobal } from "emotion";
-
-injectGlobal`
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
 
 *,
 *::before,
@@ -15,8 +13,41 @@ injectGlobal`
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-size-adjust: 100%;
   overflow-x: hidden;
-  @media not screen and (prefers-reduced-motion: reduce) {
+
+  /* These colors are currently copied from ./colors.js. Keep them in sync with theme 0. */
+  --primary-color: #695d90;
+  --secondary-color: #3d7170;
+  --white-color: #f8f5f5;
+  --black-color: #272341;
+
+  --default-font-size: 1rem;
+  --mid-font-size: 1.25rem;
+  --big-font-size: 1.5rem;
+}
+
+@media not screen and (prefers-reduced-motion: reduce) {
+  :root {
     scroll-behavior: smooth;
+  }
+}
+
+@media print {
+  :root {
+    --white-color: white;
+    --black-color: black;
+  }
+}
+@media screen and (min-width: 576px) {
+  :root {
+    --mid-font-size: 1.67rem;
+    --big-font-size: 2.25rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  :root {
+    --default-font-size: 1.25rem;
+    --mid-font-size: 2rem;
+    --big-font-size: 2.75rem;
   }
 }
 
@@ -31,10 +62,6 @@ main,
 nav,
 section {
   display: block;
-}
-
-a, a:hover, a:visited {
-  text-color: inherit;
 }
 
 hr {
@@ -65,12 +92,12 @@ dl {
   margin-bottom: 1rem;
 }
 
-// ol ol,
-// ul ul,
-// ol ul,
-// ul ol {
-//   margin-bottom: 0;
-// }
+/* ol ol,
+ ul ul,
+ ol ul,
+ ul ol {
+   margin-bottom: 0;
+} */
 
 pre,
 code,
@@ -156,4 +183,24 @@ h6 {
   font-weight: 500;
   line-height: 1.2;
 }
-`;
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--default-font-size);
+}
+
+h1 {
+  font-weight: 700;
+}
+
+a,
+a:link,
+a:hover,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+a:hover {
+  transition: all 0.3s ease-in-out;
+}

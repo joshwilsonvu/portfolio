@@ -9,6 +9,11 @@ export function useMediaQuery(query) {
       function listener(e) {
         setMatches(!!e.matches);
       }
+      if (!mql.addEventListener && mql.addListener) {
+        // Boo Safari
+        mql.addEventListener = (_, listener) => mql.addListener(listener);
+        mql.removeEventListener = (_, listener) => mql.removeListener(listener);
+      }
       mql.addEventListener("change", listener);
       return () => mql.removeEventListener("change", listener);
     }

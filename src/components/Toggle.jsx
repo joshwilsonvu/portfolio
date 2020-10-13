@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { FaSun, FaMoon } from "react-icons/fa";
-import { toggleTheme, getTheme, black, szMid } from "../style";
-import { css, cx } from "emotion";
+import { nextTheme, getTheme, black, szMid } from "../style";
+import { css, jsx } from "@emotion/core";
+/* @jsx jsx */
 
 const topRight = css`
   position: absolute;
@@ -13,16 +13,17 @@ const topRight = css`
 export default function Toggle() {
   const rerender = useRerender();
   const toggle = () => {
-    toggleTheme();
+    nextTheme();
     rerender();
   };
 
   const currentTheme = getTheme();
-  const Icon = currentTheme ? FaSun : FaMoon;
+  const Icon = currentTheme.icon;
   return (
     <Icon
       aria-hidden="true"
-      className={cx(black, topRight, szMid)}
+      title={`${currentTheme.title} theme`}
+      css={css([black, topRight, szMid])}
       onClick={toggle}
     />
   );

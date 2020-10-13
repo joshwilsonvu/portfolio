@@ -1,7 +1,8 @@
 import React from "react";
 import Tilt from "react-tilt";
 //import { Container, Row, Col } from "react-bootstrap";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
+/* @jsx jsx */
 import {
   column,
   bgWhite,
@@ -27,9 +28,9 @@ const projectElements = projects.map((project) => (
 
 const Projects = () => {
   return (
-    <section id="projects" className={cx(bgWhite, section)}>
+    <section id="projects" css={css([bgWhite, section])}>
       <div>
-        <Title className={cx(black, szBig)}>Projects</Title>
+        <Title css={css([black, szBig])}>Projects</Title>
         {projectElements}
       </div>
     </section>
@@ -41,15 +42,23 @@ function Project({ project }) {
   const { title, paragraphs, url, repo, img } = project;
 
   return (
-    <div className={row}>
+    <div
+      css={css([
+        row,
+        // Picture should be to the right on desktop but above on mobile
+        css`
+          flex-wrap: wrap-reverse;
+        `,
+      ])}
+    >
       <AutoFade
         dir={isDesktop ? "left" : "bottom"}
-        className={cx(column, readingWidth)}
+        css={css([column, readingWidth])}
       >
-        <div className={cx(padBig, black)}>
-          <h3 className={szMid}>{title}</h3>
+        <div css={css([padBig, black])}>
+          <h3 css={szMid}>{title}</h3>
           <div
-            className={css`
+            css={css`
               margin-bottom: 4rem;
             `}
           >
@@ -61,7 +70,7 @@ function Project({ project }) {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              className={cx(button, buttonBlack)}
+              css={css([button, buttonBlack])}
               href={url}
             >
               View Live
@@ -72,7 +81,7 @@ function Project({ project }) {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              className={cx(button, buttonBlack)}
+              css={css([button, buttonBlack])}
               href={repo}
             >
               Source Code
@@ -88,7 +97,7 @@ function Project({ project }) {
       >
         <AutoFade
           dir={isDesktop ? "left" : "bottom"}
-          className={cx(column, flex0)}
+          css={css([column, flex0])}
         >
           <ProjectImg alt={title} filename={img} />
         </AutoFade>

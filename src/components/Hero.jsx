@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaArrowAltCircleDown } from "react-icons/fa";
-import { css, cx } from "emotion";
+import { css, jsx, ClassNames } from "@emotion/core";
+/* @jsx jsx */
 import {
   fullHeight,
   bgWhite,
@@ -19,7 +20,7 @@ import { useIsDesktop } from "../hooks/useMediaQuery";
 
 const { name, makeThings } = hero;
 
-const now = Date.now();
+const now = Date.now(); // makes things easier in dev
 const Hero = () => {
   const isDesktop = useIsDesktop();
   const [finished, setFinished] = useState(false);
@@ -27,35 +28,40 @@ const Hero = () => {
   return (
     <>
       <Toggle />
-      <section id="hero" key={now} className={cx(section, fullHeight, bgWhite)}>
+      <section id="hero" key={now} css={css([section, fullHeight, bgWhite])}>
         <div
-          className={cx(
+          css={css([
             padBig,
             css`
               margin-top: 25vh;
-            `
-          )}
+            `,
+          ])}
         >
-          <TypeIt
-            reducedMotion={reducedMotion}
-            className={cx(black, szBig)}
-            element="h1"
-            options={{
-              speed: 80,
-              deleteSpeed: 50,
-              afterComplete: async () => setFinished(true),
+          <ClassNames>
+            {({ css }) => {
+              const gradientClass = css(gradient);
+              return (
+                <TypeIt
+                  reducedMotion={reducedMotion}
+                  css={css([black, szBig])}
+                  element="h1"
+                  options={{
+                    speed: 80,
+                    deleteSpeed: 50,
+                    afterComplete: async () => setFinished(true),
+                  }}
+                  getBeforeInit={(instance) =>
+                    typeItInit(instance, isDesktop, gradientClass)
+                  }
+                />
+              );
             }}
-            getBeforeInit={(instance) => typeItInit(instance, isDesktop)}
-          />
+          </ClassNames>
         </div>
-        <div aria-hidden="true" className={cx(bottom, flex1)}>
-          <Fade
-            visible={finished}
-            dir="top"
-            className={cx(black, szBig, padBig)}
-          >
+        <div aria-hidden="true" css={css([bottom, flex1])}>
+          <Fade visible={finished} dir="top" css={css([black, szBig, padBig])}>
             <FaArrowAltCircleDown
-              className={css`
+              css={css`
                 cursor: pointer;
               `}
               onClick={() => {
@@ -74,12 +80,12 @@ const Hero = () => {
 
 export default Hero;
 
-function typeItInit(instance, isDesktop) {
+function typeItInit(instance, isDesktop, gradientClass) {
   const withCode = ` with code. `;
   const delay = 500;
   const interval = 1250;
   instance.type(`Hi! `, { delay });
-  instance.type(`I'm <span class="${gradient}">${name}</span>.`, {
+  instance.type(`I'm <span class="${gradientClass}">${name}</span>.`, {
     delay,
   });
   if (makeThings.length) {
@@ -100,15 +106,15 @@ function typeItInit(instance, isDesktop) {
     }
   }
   instance.type(
-    `<span class="${gradient}">${makeThings[makeThings.length - 1]}</span>`
+    `<span class="${gradientClass}">${makeThings[makeThings.length - 1]}</span>`
   );
   instance.move("END", { delay });
   return instance;
 }
 
 const reducedMotion = (
-  <h1 className="black sz-big">
-    Hi! I'm <span className={gradient}>{name}</span>.
+  <h1 css={css([black, szBig])}>
+    Hi! I'm <span css={gradient}>{name}</span>.
     <br />I make{" "}
     <span
       dangerouslySetInnerHTML={{ __html: makeThings[makeThings.length - 1] }}

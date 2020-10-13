@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useReduceMotion } from "../hooks/useMediaQuery";
-import { css, cx } from "emotion";
+import { css, jsx } from "@emotion/core";
+/* @jsx jsx */
 import TypeItOriginal from "typeit-react";
 
 export function TypeIt({
@@ -11,7 +12,7 @@ export function TypeIt({
   const reduceMotion = useReduceMotion();
   if (reduceMotion) {
     return (
-      <Element className={delegated.className}>
+      <Element css={delegated.css} className={delegated.className}>
         {reducedMotion || delegated.children}
       </Element>
     );
@@ -23,13 +24,11 @@ export function Title({ children, className }) {
   return (
     <TypeIt
       element="h1"
-      className={cx(
-        css`
-          text-align: center;
-          padding-bottom: var(--big-font-size);
-        `,
-        className
-      )}
+      css={css`
+        text-align: center;
+        padding-bottom: var(--big-font-size);
+      `}
+      className={className}
       options={{
         waitUntilVisible: true,
         lifeLike: false,
@@ -46,7 +45,7 @@ const clsInvisible = css`
   @media not screen and (prefers-reduced-motion: reduce) {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.5s ease-out, transform 0.8s ease-out;
+    transition: all 0.7s ease-out;
     will-change: opacity, visibility;
   }
 `;
@@ -92,19 +91,20 @@ export function AutoFade(props) {
 }
 
 export const Fade = React.forwardRef(function Fade(
-  { visible, dir, className, children },
+  { visible, dir, className, css: cssProp, children },
   ref
 ) {
   const reduceMotion = useReduceMotion();
   return (
     <div
       ref={ref}
-      className={cx(
-        className,
+      css={css([
+        cssProp,
         !reduceMotion && dirs[dir],
         clsInvisible,
-        visible && clsVisible
-      )}
+        visible && clsVisible,
+      ])}
+      className={className}
     >
       {children}
     </div>

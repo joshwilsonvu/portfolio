@@ -1,7 +1,8 @@
 import React from "react";
 
 import { bgGradient, bgWhite } from "../style";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
+/* @jsx jsx */
 
 const div = css`
   width: 100%;
@@ -16,8 +17,8 @@ const clip2 = css`
 `;
 export default function Divider({ invert = false }) {
   return (
-    <div aria-hidden="true" className={bgWhite}>
-      <div className={cx(bgGradient, div, invert ? clip1 : clip2)} />
+    <div aria-hidden="true" css={bgWhite}>
+      <div css={css([bgGradient, div, invert ? clip1 : clip2])} />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import { AutoFade, Title } from "./animations";
 import AboutImg from "./AboutImg";
-import Divider from "./Divider";
 import { about } from "../data";
-import { css, cx } from "emotion";
+import { css, jsx } from "@emotion/core";
+/* @jsx jsx */
 import {
   bgGradient,
   mainCenter,
@@ -24,27 +24,27 @@ const { img, paragraphs, resume } = about;
 
 const About = () => {
   return (
-    <section id="about" className={cx(section, bgGradient)}>
-      <Title className={cx(white, szBig)}>About Me</Title>
-      <div className={cx(row, mainCenter)}>
-        <AutoFade dir="left" className={cx(column, flex0)}>
+    <section id="about" css={css([section, bgGradient])}>
+      <Title css={css([white, szBig])}>About Me</Title>
+      <div css={css([row, mainCenter])}>
+        <AutoFade dir="left" css={css([column, flex0])}>
           <AboutImg alt="profile picture" filename={img} />
         </AutoFade>
-        {/* <div className={spacer} /> */}
+        {/* <div css={spacer} /> */}
         <AutoFade
           dir="right"
-          className={cx(
+          css={css([
             column,
             textLeft,
             padSmall,
             readingWidth,
             css`
               overflow: wrap;
-            `
-          )}
+            `,
+          ])}
         >
           {paragraphs.map((text, i) => (
-            <p key={i} className={cx(szNormal, white)}>
+            <p key={i} css={css([szNormal, white])}>
               {text}
             </p>
           ))}
@@ -53,7 +53,7 @@ const About = () => {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cx(button, buttonWhite)}
+                css={css([button, buttonWhite])}
                 href={resume}
               >
                 View Resume
