@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { nextTheme, getTheme, black, szMid } from "../style";
+import { nextTheme, getTheme, black, szTap } from "../style";
 import { css, jsx } from "@emotion/core";
 /* @jsx jsx */
 
@@ -23,7 +23,7 @@ export default function Toggle() {
     <Icon
       aria-hidden="true"
       title={`${currentTheme.title} theme`}
-      css={css([black, topRight, szMid])}
+      css={css([black, topRight, szTap])}
       onClick={toggle}
     />
   );

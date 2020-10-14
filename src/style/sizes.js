@@ -9,6 +9,9 @@ export const szMid = css`
 export const szBig = css`
   font-size: var(--big-font-size);
 `;
+export const szTap = css`
+  font-size: max(var(--mid-font-size), 36px);
+`;
 
 export const padSmall = css`
   padding: calc(var(--default-font-size) / 2) var(--default-font-size);

@@ -23,7 +23,7 @@ const hover = keyframes`
     transform: translatey(0);
   }
   to {
-    transform: translatey(-2rem) rotate(5deg);
+    transform: translateY(-1rem) rotate(5deg);
   }
 `;
 

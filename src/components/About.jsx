@@ -56,7 +56,7 @@ const About = () => {
                 css={css([button, buttonWhite])}
                 href={resume}
               >
-                View Resume
+                View Résumé
               </a>
             </div>
           )}

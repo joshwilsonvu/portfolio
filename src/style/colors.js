@@ -1,5 +1,5 @@
 import { css } from "@emotion/core";
-import { FaSun, FaMoon, FaEye, FaLeaf, FaLemon } from "react-icons/fa";
+import { FaSun, FaMoon, FaGlasses, FaLeaf, FaLemon } from "react-icons/fa";
 
 const themes = [
   {
@@ -18,13 +18,13 @@ const themes = [
     colors: {
       primary: "#a296c5",
       secondary: "#8bb2cf",
-      white: "#253340",
+      white: "#21303a",
       black: "#e2e4ec",
     },
   },
   {
     title: "high-contrast",
-    icon: FaEye,
+    icon: FaGlasses,
     colors: {
       primary: "#222",
       secondary: "#222",
@@ -36,8 +36,8 @@ const themes = [
     title: "lemon",
     icon: FaLemon,
     colors: {
-      primary: "#d8d0a0",
-      secondary: "#c0c098",
+      primary: "#d8d098",
+      secondary: "#c0bba0",
       white: "#184850",
       black: "#fffff0",
     },
@@ -102,19 +102,19 @@ function ifNoReduceMotion(str) {
 
 export const white = css`
   color: var(--white-color);
-  ${ifNoReduceMotion("transition: color 0.5s")};
+  ${ifNoReduceMotion("transition: all 0.5s")};
 `;
 export const black = css`
   color: var(--black-color);
-  ${ifNoReduceMotion("transition: color 0.5s")};
+  ${ifNoReduceMotion("transition: all 0.5s")};
 `;
 export const bgWhite = css`
   background-color: var(--white-color);
-  ${ifNoReduceMotion("transition: background-color 0.5s")};
+  ${ifNoReduceMotion("transition: all 0.5s")};
 `;
 export const bgBlack = css`
   background-color: var(--black-color);
-  ${ifNoReduceMotion("transition: background-color 0.5s")};
+  ${ifNoReduceMotion("transition: all 0.5s")};
 `;
 export const borderWhite = css`
   border-color: var(--white-color);

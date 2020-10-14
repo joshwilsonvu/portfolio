@@ -12,6 +12,7 @@ import {
   section,
   flex1,
   gradient,
+  szTap,
 } from "../style";
 import { TypeIt, Fade } from "./animations";
 import Toggle from "./Toggle";
@@ -48,7 +49,10 @@ const Hero = () => {
                   options={{
                     speed: 80,
                     deleteSpeed: 50,
-                    afterComplete: async () => setFinished(true),
+                    afterComplete: async (_, instance) => {
+                      setFinished(true);
+                      instance.destroy();
+                    },
                   }}
                   getBeforeInit={(instance) => {
                     setFinished(false);
@@ -61,7 +65,7 @@ const Hero = () => {
         </div>
         <div aria-hidden="true" css={css([bottom, flex1])}>
           <Fade visible={finished} dir="top">
-            <div css={css([black, szBig, padBig])}>
+            <div css={css([black, szTap, padBig])}>
               <FaArrowAltCircleDown
                 title="See more"
                 css={css`

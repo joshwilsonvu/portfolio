@@ -22,7 +22,10 @@ const { cta } = contact;
 const { email, twitter, github, linkedin } = footer;
 
 const Contact = () => (
-  <section id="contact" css={css([bgGradient, section])}>
+  <section
+    id="contact"
+    css={css([bgGradient, section, { position: "relative" }])}
+  >
     <div>
       <Title css={css([szBig, white])}>{cta}</Title>
       <ul css={css([listUnstyled, row, alignCenter])}>
@@ -36,6 +39,7 @@ const Contact = () => (
         )}
       </ul>
     </div>
+    <Copyright />
   </section>
 );
 
@@ -67,5 +71,34 @@ function SocialLink({ info, name, icon }) {
         </li>
       </a>
     </AutoFade>
+  );
+}
+
+const currentYear = new Date().getFullYear();
+const years = currentYear === 2020 ? "2020" : `2020 - ${currentYear}`;
+
+function Copyright() {
+  return (
+    <footer
+      css={css([
+        white,
+        css`
+          text-align: center;
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          font-size: 0.75rem;
+        `,
+      ])}
+    >
+      <p
+        css={css`
+          margin-bottom: 0.5rem;
+        `}
+      >
+        &copy; Copyright {years} Josh Wilson
+      </p>
+    </footer>
   );
 }

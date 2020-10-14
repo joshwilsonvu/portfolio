@@ -78,7 +78,6 @@ export const Fade = React.forwardRef(function Fade(
   { visible, dir, className, children },
   ref
 ) {
-  console.log({ className });
   const reduceMotion = useReduceMotion();
   return (
     <div
@@ -91,7 +90,7 @@ export const Fade = React.forwardRef(function Fade(
           @media not screen and (prefers-reduced-motion: reduce) {
             opacity: 0;
             visibility: hidden;
-            transition: all 0.7s ease-out;
+            transition: all 0.5s ease-out;
             will-change: opacity, visibility;
             ${visible
               ? `

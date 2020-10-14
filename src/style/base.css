@@ -1,5 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@400&display=swap");
 
 *,
 *::before,
@@ -17,7 +18,7 @@
   /* These colors are currently copied from ./colors.js. Keep them in sync with theme 0. */
   --primary-color: #695d90;
   --secondary-color: #3d7170;
-  --white-color: #f8f5f5;
+  --white-color: #f8f5f7;
   --black-color: #272341;
 
   --default-font-size: 1rem;
@@ -39,6 +40,7 @@
 }
 @media screen and (min-width: 576px) {
   :root {
+    --default-font-size: 1.25rem;
     --mid-font-size: 1.67rem;
     --big-font-size: 2.25rem;
   }
@@ -81,6 +83,8 @@ h6 {
 }
 
 p {
+  font-family: Hind, Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.25;
   margin-top: 0;
   margin-bottom: 1rem;
 }

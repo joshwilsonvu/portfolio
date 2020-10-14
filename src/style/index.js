@@ -100,7 +100,7 @@ export const row = css`
   ${"" /* ${process.env.NODE_ENV === "development" && "border: 1px solid purple;"} */}
 `;
 export const readingWidth = css`
-  min-width: 30ch;
+  min-width: min(30ch, 90%);
   max-width: 60ch;
   overflow: wrap;
 `;
@@ -147,7 +147,7 @@ export const buttonBlack = css`
 
 export const hoverGrow = css`
   will-change: transform;
-  transition: transform 0.5s;
+  transition: all 0.5s;
   &:hover {
     @media not screen and (prefers-reduced-motion: reduce) {
       transform: scale(1.05);

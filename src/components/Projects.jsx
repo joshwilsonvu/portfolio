@@ -48,18 +48,21 @@ function Project({ project }) {
         // Picture should be to the right on desktop but above on mobile
         css`
           flex-wrap: wrap-reverse;
+          align-items: start;
+          justify-content: center;
         `,
       ])}
     >
       <AutoFade
         dir={isDesktop ? "left" : "bottom"}
-        css={css([column, readingWidth])}
+        css={css([column, readingWidth, { marginBottom: "4rem" }])}
       >
-        <div css={css([padBig, black])}>
-          <h3 css={szMid}>{title}</h3>
+        <div css={black}>
+          <h2 css={css([szMid, { marginBottom: "1rem" }])}>{title}</h2>
           <div
             css={css`
-              margin-bottom: 4rem;
+              margin-bottom: 2rem;
+              margin-right: 1rem;
             `}
           >
             {paragraphs.map((text, i) => (
@@ -89,19 +92,20 @@ function Project({ project }) {
           )}
         </div>
       </AutoFade>
-      <a
-        href={url || "#!"}
-        target="_blank"
-        aria-label="Project Link"
-        rel="noopener noreferrer"
+
+      <AutoFade
+        dir={isDesktop ? "left" : "bottom"}
+        css={css([column, flex0, { width: "100%", marginBottom: "1rem" }])}
       >
-        <AutoFade
-          dir={isDesktop ? "left" : "bottom"}
-          css={css([column, flex0])}
+        <a
+          href={url || repo || "#!"}
+          target="_blank"
+          aria-label="Project Link"
+          rel="noopener noreferrer"
         >
           <ProjectImg alt={title} filename={img} />
-        </AutoFade>
-      </a>
+        </a>
+      </AutoFade>
     </div>
   );
 }
